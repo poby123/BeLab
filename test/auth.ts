@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { publicClient, authClient } = require('./config');
+import { authClient, publicClient } from './config';
 
-class AuthTest {
+export class AuthTest {
   static signUpTest = async () => {
     const { data } = await publicClient.post('/user', {
       email: 'test@gmail.com',
@@ -26,12 +26,3 @@ class AuthTest {
     return data;
   };
 }
-
-const main = async () => {
-  // signUpTest();
-  // await loginTest();
-  const result = await AuthTest.getUserProfile();
-  console.log(result);
-};
-
-main();

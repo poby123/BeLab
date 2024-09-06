@@ -23,7 +23,7 @@ export class UserService {
     );
   }
 
-  public async getUser(userId: number) {
+  public async getUser(userId: bigint) {
     return await this.userRepository
       .findOneOrFail({ where: { id: userId } })
       .catch(() => {

@@ -6,7 +6,7 @@ import { AUTHORITY } from './role.enum';
 @Entity({ name: 'user' })
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn({ name: 'user_id', type: 'bigint' })
-  id: number;
+  id: bigint;
 
   @Column({ name: 'email' })
   email: string;
@@ -20,6 +20,7 @@ export class User extends BaseEntity {
   @Column({ name: 'authority', default: AUTHORITY.ROLE_USER })
   role: AUTHORITY;
 
+  /** create */
   static create({
     email,
     name,

@@ -81,7 +81,7 @@ export class JwtUtils {
     if (payload?.type != ACCESS_TOKEN_TYPE) {
       throw new BlException(AuthError.InvalidJwt);
     }
-    const userId = Number(payload.id);
+    const userId = BigInt(payload.id);
     return new TokenUserDto(userId, payload.authority);
   }
 }

@@ -2,7 +2,7 @@ import { Builder } from 'builder-pattern';
 import { User } from '../../entity/user.entity';
 
 export class UserProfileResponse {
-  id: number;
+  id: bigint;
   name: string;
   email: string;
 

@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const axios = require('axios');
+import axios from 'axios';
 
 const BASE_URL = 'http://127.0.0.1:9000';
-const publicClient = axios.create({
+export const publicClient = axios.create({
   baseURL: BASE_URL,
 });
 
-const authClient = axios.create({
+export const authClient = axios.create({
   baseURL: BASE_URL,
 });
 
@@ -22,8 +22,3 @@ authClient.interceptors.request.use(
     return Promise.reject(error);
   },
 );
-
-module.exports = {
-  publicClient,
-  authClient,
-};
