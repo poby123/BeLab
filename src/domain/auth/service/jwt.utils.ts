@@ -41,7 +41,7 @@ export class JwtUtils {
       algorithm: 'HS512',
     });
 
-    return `${ACCESS_TOKEN_TYPE} ${token}`;
+    return `${token}`;
   }
 
   public async extractAccessTokenFromHeader(req: Request) {

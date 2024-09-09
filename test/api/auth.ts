@@ -1,7 +1,7 @@
-import { authClient, publicClient } from './config';
+import { authClient, publicClient } from '../config';
 
 export class AuthApi {
-  static signUpTest = async () => {
+  static signUp = async () => {
     const { data } = await publicClient.post('/user', {
       email: 'test@gmail.com',
       name: '홍길동',
@@ -11,13 +11,13 @@ export class AuthApi {
     return data;
   };
 
-  static loginTest = async () => {
+  static login = async () => {
     const { data } = await publicClient.post('/auth/login', {
       email: 'test@gmail.com',
       password: 'test123',
     });
 
-    return data;
+    return data.result;
   };
 
   static getUserProfile = async () => {

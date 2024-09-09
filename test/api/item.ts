@@ -1,5 +1,5 @@
 import { ItemRegisterRequest } from 'src/domain/item/dto/request/item.request';
-import { authClient } from './config';
+import { authClient } from '../config';
 
 export class ItemApi {
   static async register(request: Partial<ItemRegisterRequest>) {

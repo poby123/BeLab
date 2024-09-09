@@ -1,5 +1,5 @@
 import { OrderItemRequest } from 'src/domain/order/dto/request/order-item.request';
-import { authClient, publicClient } from './config';
+import { authClient, publicClient } from '../config';
 
 export class OrderApi {
   static async order(_request: Partial<OrderItemRequest>[]) {

@@ -6,10 +6,33 @@
 
 ```sh
 $ git clone https://github.com/poby123/BeLab.git
+$ cd BeLab
+$ vi .env.local # 하단의 내용 형식
 $ npm i
+
+$ npm run start:dev
 $ cd test
 $ ts-node main.ts
 ```
+
+### .env.local
+
+```
+PORT=9000
+
+MYSQL_HOST=127.0.0.1
+MYSQL_PORT=3306
+MYSQL_ROOT_USERNAME=
+MYSQL_ROOT_PASSWORD=
+MYSQL_DATABASE=
+
+ACCESS_TOKEN_KEY=asifoj23eir0fhjsdnlkasdf9s0adfjasldkfsdfiohweflksjdfio329rjewflwwoepfejwflf
+REFRESH_TOKEN_KEY=sfd92h3eldifhiqowernelskfjsdfliweinfoefweflkjfiowejfnwelkfweoif32iofjskfld
+
+SALT_ROUND=10
+```
+
+### 동시성 락 실험결과
 
 ```text
 ------- TEST NORMAL -------

@@ -1,7 +1,15 @@
+import { AuthApi } from './api/auth';
 import { ItemApi } from './api/item';
 import { OrderApi } from './api/order';
 
 const main = async () => {
+  // 최초 1회만 회원가입
+  // await AuthApi.signUp();
+
+  // accessToken을 config.ts의 ACCESS_TOKEN에 넣어주세요
+  const { accessToken } = await AuthApi.login();
+  console.log('accessToken: ', accessToken);
+
   await testNormal();
   await testOptimistic();
   await testPessimistic();
