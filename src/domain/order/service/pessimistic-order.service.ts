@@ -5,7 +5,7 @@ import { ItemError } from 'src/domain/item/exception/item.exception';
 import { User } from 'src/domain/user/entity/user.entity';
 import { UserError } from 'src/domain/user/exception/user.exception';
 import { BlException } from 'src/global/exception/belab.exception';
-import { In, MoreThan, Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { Transactional } from 'typeorm-transactional';
 import { OrderItemRequest } from '../dto/request/order-item.request';
 import { OrderRequest } from '../dto/request/order.request';
@@ -14,7 +14,7 @@ import { Order } from '../entity/order.entity';
 import { OrderError } from '../exception/order.exception';
 
 @Injectable()
-export class OrderService {
+export class PessimisticOrderService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
@@ -28,19 +28,6 @@ export class OrderService {
     @InjectRepository(Item)
     private readonly itemRepository: Repository<Item>,
   ) {}
-
-  public async getOrderList(userId: bigint) {
-    return await this.orderRepository.find({
-      relations: {
-        orderItemList: {
-          item: true,
-        },
-      },
-      where: {
-        userId,
-      },
-    });
-  }
 
   @Transactional()
   public async order(userId: bigint, @Body() request: OrderRequest) {
@@ -99,18 +86,9 @@ export class OrderService {
       where: {
         id: In(requestItemList.map((item) => item.itemId)),
       },
+      lock: {
+        mode: 'pessimistic_write',
+      },
     });
-  }
-
-  @Transactional()
-  public async reset() {
-    await this.orderItemRepository.delete({ id: MoreThan(0n) });
-    await this.orderRepository.delete({ id: MoreThan(0n) });
-    await this.itemRepository.delete({ id: MoreThan(0n) });
-
-    const item = Item.create({ name: '당근', price: 1000, stock: 200 });
-    item.id = 1n;
-
-    await this.itemRepository.save(item);
   }
 }

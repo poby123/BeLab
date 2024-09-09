@@ -33,7 +33,7 @@ export class Order extends BaseEntity {
   /** create */
   static create(user: User, orderItemList: OrderItem[]) {
     const originalTotalOrderPrice = orderItemList.reduce(
-      (acc, item) => acc + Number(item.orderPrice) * Number(item.count),
+      (acc, item) => acc + item.getTotalPrice(),
       0,
     );
 

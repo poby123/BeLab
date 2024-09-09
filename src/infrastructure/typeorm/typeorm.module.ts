@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigKey } from 'src/global/const/config';
 import { DataSource } from 'typeorm';
 import { addTransactionalDataSource } from 'typeorm-transactional';
+import { OptimisticLockingSubscriber } from './subscriber';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { addTransactionalDataSource } from 'typeorm-transactional';
         autoLoadEntities: true,
         logging: false,
         entities: ['dist/**/*.entity.js'],
+        subscribers: [OptimisticLockingSubscriber],
         timezone: 'Z',
       }),
       dataSourceFactory: async (options) => {

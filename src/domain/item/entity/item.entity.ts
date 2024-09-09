@@ -1,7 +1,7 @@
 import { Builder } from 'builder-pattern';
 import { BaseEntity } from 'src/domain/common/entity/base.entity';
 import { BlException } from 'src/global/exception/belab.exception';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, VersionColumn } from 'typeorm';
 import { ItemError } from '../exception/item.exception';
 
 @Entity({ name: 'item' })
@@ -17,6 +17,12 @@ export class Item extends BaseEntity {
 
   @Column({ name: 'stock' })
   stock: number;
+
+  @VersionColumn()
+  version: number;
+
+  /** values */
+  enableOptimistic: boolean = false; // 낙관적 락을 선택적으로 활성화하기 위한 필드
 
   /** create */
   static create({

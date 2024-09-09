@@ -46,4 +46,8 @@ export class OrderItem extends BaseEntity {
       .count(count)
       .build();
   }
+
+  public getTotalPrice() {
+    return Number(this.orderPrice) * Number(this.count);
+  }
 }

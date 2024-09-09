@@ -1,7 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 import { authClient, publicClient } from './config';
 
-export class AuthTest {
+export class AuthApi {
   static signUpTest = async () => {
     const { data } = await publicClient.post('/user', {
       email: 'test@gmail.com',
